@@ -1,4 +1,3 @@
-request = require 'request'
 redmineClient = require './redmineClient'
 
 activities = null

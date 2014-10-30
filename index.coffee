@@ -1,3 +1,15 @@
+#!/usr/bin/env coffee
+
+program = require 'commander'
+program
+  .version '0.0.1'
+  .option '-u, --user [user]', 'user'
+  .option '-p, --project [project]', 'project'
+  .option '-d, --date [date]', 'date'
+  .option '-h, --hours [hours]', 'hours'
+  .option '-a, --activity [activity]', 'activity'
+  .parse process.argv
+
 async = require 'async'
 activityMod = require './activity'
 projectMod = require './project'
@@ -22,4 +34,4 @@ logTime = (user, project, spentOn, hours, activity) ->
     , (error) ->
       console.log error
 
-logTime('xavier', 'dcpf', '2014-10-28', 2, 'DetailDesign')
+logTime(program.user, program.project, program.date, program.hours, program.activity)
