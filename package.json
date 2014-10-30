@@ -1,0 +1,15 @@
+{
+  "name": "redmineAdapter",
+  "version": "0.0.1",
+  "description": "Adapter for redmine REST API service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "XaiverZhou",
+  "license": "MIT",
+  "dependencies": {
+    "request": "~2.47.0",
+    "async": "~0.9.0"
+  }
+}
