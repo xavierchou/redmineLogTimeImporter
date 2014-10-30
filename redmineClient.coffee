@@ -1,13 +1,15 @@
 request = require 'request'
 
-serverUrl = 'http://13.187.243.104'
+config = require 'config'
+serverUrl = config.serverUrl
+apiKey = config.apiKey
 
-module.exports = (options, callback) ->
+exports.get = (options, callback) ->
   reqOptions =
     uri: serverUrl + options.path
     headers:
-      'X-Redmine-API-Key': 'xxxxxxxxxxxxxxxxxxxxxxxxx'
-      'X-Redmine-Switch-User': 'xavier'
+      'X-Redmine-API-Key': apiKey
+      'X-Redmine-Switch-User': 'xavier' #TODO
   request reqOptions, (error, response, body) ->
     return callback error if error
     if response.statusCode isnt 200
@@ -17,4 +19,20 @@ module.exports = (options, callback) ->
     catch e
       return callback "JSON parse error:#{e}"
     callback null, result
+
+exports.post = (options, callback) ->
+  reqOptions =
+    uri: serverUrl + options.path
+    method: 'POST'
+    headers:
+      'X-Redmine-API-Key': apiKey
+      'X-Redmine-Switch-User': options.user ? 'xavier' #TODO
+    json: true
+    body: options.body
+  request reqOptions, (error, response, body) ->
+    return callback error if error
+    if response.statusCode isnt 201
+      console.log body
+      return callback "http status Not OK #{response.statusCode}"
+    callback null
 

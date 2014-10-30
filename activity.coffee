@@ -7,7 +7,7 @@ getActivities = (callback) ->
   options =
     path: '/enumerations/time_entry_activities.json'
     resultField: 'time_entry_activities'
-  redmineClient options, (error, result) ->
+  redmineClient.get options, (error, result) ->
     return callback error if error
     activities = result
     callback null, activities

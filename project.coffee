@@ -1,14 +1,12 @@
-request = require 'request'
 redmineClient = require './redmineClient'
 
-serverUrl = 'http://13.187.243.104'
 projects = null
 getProjects = (callback) ->
   return callback projects if projects?
   options =
     path: '/projects.json'
     resultField: 'projects'
-  redmineClient options, (error, result) ->
+  redmineClient.get options, (error, result) ->
     return callback error if error
     projects = result
     callback null, projects

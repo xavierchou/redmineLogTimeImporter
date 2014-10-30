@@ -1,7 +1,7 @@
-request = require 'request'
 async = require 'async'
 activityMod = require './activity'
 projectMod = require './project'
+timeEntryMod = require './time_entry'
 
 logTime = (user, project, spentOn, hours, activity) ->
   async.parallel [
@@ -13,7 +13,13 @@ logTime = (user, project, spentOn, hours, activity) ->
     return console.log error if error
     activityId = result[0]
     projectId = result[1]
-    console.log activityId
-    console.log projectId
+    console.log "pjr id: #{projectId}, act id: #{activityId}"
+    timeEntryMod.addTimeEntry user,
+      project_id: projectId
+      spent_on: spentOn
+      hours: hours
+      activity_id: activityId
+    , (error) ->
+      console.log error
 
-logTime('someone', 'dcpf', '2014/11/23', 3, 'Coding')
+logTime('xavier', 'dcpf', '2014-10-28', 2, 'DetailDesign')
