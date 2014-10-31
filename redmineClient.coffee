@@ -9,7 +9,7 @@ exports.get = (options, callback) ->
     uri: serverUrl + options.path
     headers:
       'X-Redmine-API-Key': apiKey
-      'X-Redmine-Switch-User': 'xavier' #TODO
+  reqOptions.headers['X-Redmine-Switch-User'] = options.user if options.user?
   request reqOptions, (error, response, body) ->
     return callback error if error
     if response.statusCode isnt 200
@@ -26,9 +26,9 @@ exports.post = (options, callback) ->
     method: 'POST'
     headers:
       'X-Redmine-API-Key': apiKey
-      'X-Redmine-Switch-User': options.user ? 'xavier' #TODO
     json: true
     body: options.body
+  reqOptions.headers['X-Redmine-Switch-User'] = options.user if options.user?
   request reqOptions, (error, response, body) ->
     return callback error if error
     if response.statusCode isnt 201
