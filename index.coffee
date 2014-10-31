@@ -31,13 +31,13 @@ logTime = (user, project, spentOn, hours, activity, others...) ->
     activityId = result[0]
     projectId = result[1]
     console.log "pjr id: #{projectId}, act id: #{activityId}"
-    #timeEntryMod.addTimeEntry user,
-    #  project_id: projectId
-    #  spent_on: spentOn
-    #  hours: hours
-    #  activity_id: activityId
-    #, (error) ->
-    #  console.log error ? 'OK'
+    timeEntryMod.addTimeEntry user,
+      project_id: projectId
+      spent_on: spentOn
+      hours: hours
+      activity_id: activityId
+    , (error) ->
+      console.log error or 'OK'
 
 
 if program.csvfile?
