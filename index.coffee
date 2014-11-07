@@ -37,7 +37,8 @@ logTime = (user, project, spentOn, hours, activity, others...) ->
       hours: hours
       activity_id: activityId
     , (error) ->
-      console.log error or 'OK'
+      return console.log error if error
+      console.log 'OK'
 
 
 if program.csvfile?
