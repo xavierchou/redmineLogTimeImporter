@@ -36,8 +36,8 @@ logTime = (user, project, spentOn, hours, activity, others...) ->
       spent_on: spentOn
       hours: hours
       activity_id: activityId
-    , (error) ->
-      return console.log error if error
+    , (err) ->
+      return console.log err if err
       console.log 'OK'
 
 

@@ -8,6 +8,7 @@ exports.addTimeEntry = (user, timeEntry, callback) ->
     user: user
 
   redmineClient.post options, (error) ->
-    console.log error
+    if error
+      console.log error
 
 
